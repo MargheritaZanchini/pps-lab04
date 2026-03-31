@@ -1,5 +1,7 @@
 package it.unibo.pps.u03
 
+import scala.annotation.tailrec
+
 object Sequences: // Essentially, generic linkedlists
   
   enum Sequence[E]:
@@ -15,11 +17,12 @@ object Sequences: // Essentially, generic linkedlists
     def map[A, B](l: Sequence[A])(mapper: A => B): Sequence[B] = l match
       case Cons(h, t) => Cons(mapper(h), map(t)(mapper))
       case Nil()      => Nil()
-
+    
     def filter[A](l1: Sequence[A])(pred: A => Boolean): Sequence[A] = l1 match
       case Cons(h, t) if pred(h) => Cons(h, filter(t)(pred))
       case Cons(_, t)            => filter(t)(pred)
       case Nil()                 => Nil()
+
 
 @main def trySequences =
   import Sequences.* 

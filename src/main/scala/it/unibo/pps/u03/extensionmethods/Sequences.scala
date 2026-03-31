@@ -1,5 +1,7 @@
 package it.unibo.pps.u03.extensionmethods
 
+import scala.annotation.tailrec
+
 object Sequences:
   
   enum Sequence[E]:
@@ -23,7 +25,14 @@ object Sequences:
         case Cons(h, t) if pred(h) => Cons(h, t.filter(pred))
         case Cons(_, t)            => t.filter(pred)
         case Nil()                 => Nil()
-
+      
+      @tailrec
+      def contains(element: A): Boolean = l match {
+        case Nil() => false
+        case Cons(h, _) if (h == element) => true
+        case Cons(_, t) => t.contains(element)
+      }
+    
     def of[A](n: Int, a: A): Sequence[A] =
       if (n == 0) then Nil[A]() else Cons(a, of(n - 1, a))
 

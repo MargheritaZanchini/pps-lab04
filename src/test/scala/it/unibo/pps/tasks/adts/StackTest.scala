@@ -3,13 +3,13 @@ package it.unibo.pps.tasks.adts
 import org.junit.*
 import org.junit.Assert.*
 import Ex3Stacks.StackImpl
-import it.unibo.pps.u03.Sequences.Sequence
-import it.unibo.pps.u03.Optionals.Optional
+import it.unibo.pps.u03.extensionmethods.Sequences.Sequence
+import it.unibo.pps.u03.extensionmethods.Optionals.Optional
 
 /* Tests should be clear, but note they are expressed independently of the 
    specific implementation -- UNCOMMENT FOR THE EXERCISE! 
 */
-/**
+
 class Stacktest:
 
 
@@ -23,7 +23,7 @@ class Stacktest:
     assertEquals(Sequence.Cons(10, Sequence.Nil()), empty[Int].push(10).asSequence())
   
   @Test def testPopOnEmptyStackReturnsEmpty() =
-    assertEquals(Optional.Empty(), empty[Int].pop())
+    assertEquals(Optional.None(), empty[Int].pop())
   
   @Test def testPopOnStackWithOneElementReturnsElementAndEmptyStack() =
     assertEquals(Optional.Just((10, empty[Int])), empty[Int].push(10).pop())
@@ -37,4 +37,3 @@ class Stacktest:
     val popResult = stack.pop()
     assertEquals(Optional.Just((20, empty[Int].push(10))), popResult)
 
-**/
